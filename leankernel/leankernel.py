@@ -60,7 +60,7 @@ class LeanKernel(Kernel):
 
     def treat_magicwords(self, magics):
         magicword = magics[0]
-        params = magics[1:]
+        params = magics[1]
         answertext = ''
 
         # one case for each magic word
