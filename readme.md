@@ -9,6 +9,8 @@ evaluated cells, and passing it to the lean server.
 Each time a cell is evaluated, the answer from the lean server is parsed. If
 there are no errors, the content is added to the virtual file.
 
+![](example.gif)
+
 ## Warning
 
 This is in a proof of concept stage. Please test it, but beware that
