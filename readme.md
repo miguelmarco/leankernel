@@ -56,7 +56,7 @@ those tactics to work).
 
  - If your input is only a line with the content
  ```
- print
+-- print
  ```
  it will print the already defined objects and already proven theorems and lemmas
 
