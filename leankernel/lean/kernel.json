@@ -4,8 +4,8 @@
  "display_name": "LEAN",
  "language": "lean",
  "env" : {
-    "LEAN_MEMORY" : 4096,
-    "LEAN_TIME"  : 100000,
+    "LEAN_MEMORY" : "4096M",
+    "LEAN_TIME"  : "100000",
     "LEAN_BINARY"  : "/usr/local/bin/lean",
     "LEAN_PATHFILES" : "*location/leanpkg.path*"
  }
