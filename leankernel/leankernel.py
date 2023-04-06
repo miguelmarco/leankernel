@@ -51,7 +51,7 @@ class LeanKernel(Kernel):
         return self.messagequeue.pop(0)
 
     def detect_magicword (self, code):
-        magicwords = ['save']
+        magicwords = ['save' , 'print']
         if len(code.splitlines()) == 1 and code[:2] == '--':
             words = code[2:].split()
             if words[0] in magicwords:
@@ -70,6 +70,21 @@ class LeanKernel(Kernel):
             with open(filename, "w") as fd:
                 fd.write(self.virtualfile)
             answertext = "file {} saved".format(filename)
+        #print magicword
+        if magicword == 'print':
+            text = str(self.virtualfile)
+            removecomments1 = re.compile('--.*')
+            text = removecomments1.sub('', text)
+            removecomments2 =  re.compile('/-(?:(?!/-|-/).)*-/', re.DOTALL)
+            while removecomments2.findall(text):
+                text = removecomments2.sub('', text)
+            removeproofs = re.compile('begin.*?end',re.DOTALL)
+            while removeproofs.findall(text):
+                text = removeproofs.sub('', text)
+            finddefs = re.compile('(?:def.*?\n\n)|(?:inductive.*?\n\n)|(?:structure.*?\n\n)|(?:^class.*?\n\n)|(?:lemma|theorem).*?(?=:=)', re.DOTALL)
+            answertext = ''
+            for m in finddefs.findall(text):
+                answertext += m +'\n'
         # final
         self.send_response(self.iopub_socket, 'stream', {"name":"stdout", "text": answertext})
         return {'status': 'ok',
@@ -139,7 +154,7 @@ class LeanKernel(Kernel):
         if not returncode:
             returncode = "OK"
         if not has_errors and not question_tactics:
-            self.virtualfile += "\n" + re.sub("^\#(check|print) .*", "", code,flags = re.MULTILINE)
+            self.virtualfile += "\n" + re.sub("^\#(check|print) .*", "", code,flags = re.MULTILINE) + '\n'
         stream_content = {'name': 'stdout', 'text': returncode}
         self.send_response(self.iopub_socket, 'stream', stream_content)
         return {'status': 'ok',

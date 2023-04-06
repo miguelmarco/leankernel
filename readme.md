@@ -24,15 +24,21 @@ cd leankernel
 pip install .
 ```
 
-Then edit the `kernel.json` file and adapt the environment variables to your
+Then edit the `lean/kernel.json` file and adapt the environment variables to your
 lean installation:
 
 - `LEAN_MEMORY` : the amount of RAM to be used by your lean process
 - `LEAN_TIME`: the timeout for the lean server
 - `LEAN_BINARY` : the lean executable
-- `LEAN_PATHFILES` : the `leanpkg.path` file for your lean project (so lean knows where to look for mathlib, for example).
+- `LEAN_PATHFILES` : the path to your `leanpkg.path` file for your lean project (so lean knows where to look for mathlib, for example).
 
-Finally create a `lean` folder in your jupyter kernels directory (for example `~/.local/share/jupyter/kernels` and copy the `kernel.json` file there.
+Finally install the kernel by running
+
+```
+jupyter kernelspec install leankernel/lean --user
+```
+
+This will create a `lean` folder in your jupyter kernels directory (usually `~/.local/share/jupyter/kernels`) and copy the `kernel.json` and logo file there.
 
 
 ## Notes
@@ -43,12 +49,14 @@ corresponding suggestions (you need to start importing the `tactic` module for
 those tactics to work).
 
 - If your input is only a line with the content
-
 ```
 -- save filename
 ```
-
  the content of the virtual file will be saved to `filename`.
 
-
+ - If your input is only a line with the content
+ ```
+ print
+ ```
+ it will print the already defined objects and already proven theorems and lemmas
 
