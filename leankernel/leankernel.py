@@ -27,9 +27,10 @@ class LeanKernel(Kernel):
         self.lean_memory = os.environ['LEAN_MEMORY']
         self.lean_time = os.environ['LEAN_TIME']
         self.lean_pathfiles = os.environ['LEAN_PATHFILES']
-
+        cwd = os.getcwd()
+        os.chdir(self.lean_pathfiles)
         self.proc = pexpect.spawn(self.lean_binary, ["--server",  "-M{}".format(self.lean_memory), "-T{}".format(self.lean_time), self.lean_pathfiles])
-
+        os.chdir(cwd)
 
         self.log.error("iniciando")
 

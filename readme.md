@@ -32,7 +32,7 @@ lean installation:
 - `LEAN_MEMORY` : the amount of RAM to be used by your lean process
 - `LEAN_TIME`: the timeout for the lean server
 - `LEAN_BINARY` : the lean executable
-- `LEAN_PATHFILES` : the path to your `leanpkg.path` file for your lean project (so lean knows where to look for mathlib, for example).
+- `LEAN_PATHFILES` : the path to the directory you want to run lean from (in general, where you have created a leanproject).
 
 Finally install the kernel by running
 

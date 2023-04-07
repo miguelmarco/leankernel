@@ -7,6 +7,6 @@
     "LEAN_MEMORY" : "4096M",
     "LEAN_TIME"  : "100000",
     "LEAN_BINARY"  : "/usr/local/bin/lean",
-    "LEAN_PATHFILES" : "*location/leanpkg.path*"
+    "LEAN_PATHFILES" : "/home/USERNAME/lean"
  }
 }
